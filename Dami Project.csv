@@ -1,0 +1,11 @@
+npm,nama,kelas,jenis kelamin,alamat,
+58412085,Rizki Mufrizal,4IA04,pria,jakarta,
+,,,,,
+id praktikum,nama praktikum,,,,
+IT-1,RPL2,,,,
+,,,,,
+id project,nama project,penanggung jawab,nama_file,npm,id praktikum
+1,aplikasi inventory,mufrizal,12345.zip,58412085,IT-1
+,,,,,
+email,password,enable,role,,
+mufrizalrizki@gmail.com,12345,TRUE,ROLE_ADMIN,,
