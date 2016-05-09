@@ -1,0 +1,2 @@
+class PracticumsController < ApplicationController
+end
