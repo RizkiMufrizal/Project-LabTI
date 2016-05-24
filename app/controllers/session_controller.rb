@@ -1,33 +1,34 @@
 class SessionController < ApplicationController
+  def admin
+  end
+
+  def process_login_admin
+    @user = User.authenticate(params[:email], params[:password])
+    if @user
+      session[:user_name] = @user.name
+      session[:user_email] = @user.email
+      session[:user_login] = true
+      session[:user_role] = @user.role
+      redirect_to '/'
+    else
+      flash[:danger] = 'username dan password anda masih salah'
+      render 'login'
+    end
+  end
+
   def login
   end
 
-  def process_login
-    @user = User.authenticate(params[:email], params[:password])
-    if @user
-      if @user.enable == true
-        if @user.role = 'ROLE_USER'
-          session[:user_name] = @user.name
-          session[:user_id] = @user.id
-          session[:user_email] = @user.email
-          session[:user_login] = true
-          session[:user_role] = @user.role
-          redirect_to '/'
-        else
-          flash[:notice] = 'Anda berhasil login'
-          session[:user_name] = @user.name
-          session[:user_id] = @user.id
-          session[:user_email] = @user.email
-          session[:user_login] = true
-          session[:user_role] = @user.role
-          redirect_to '/'
-        end
-      else
-        flash[:danger] = 'anda belum melakukan registrasi'
-        render 'login'
-      end
+  def process_login_praktikan
+    @student = Student.authenticate(params[:npm], params[:password])
+    if @student
+      session[:user_name] = @student.name
+      session[:user_npm] = @student.npm
+      session[:user_login] = true
+      session[:user_role] = @student.role
+      redirect_to '/'
     else
-      flash[:danger] = 'anda belum melakukan registrasi'
+      flash[:danger] = 'username dan password anda masih salah'
       render 'login'
     end
   end
