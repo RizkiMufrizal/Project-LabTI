@@ -1,41 +1,50 @@
 <%= form_for @practicum, :html => { :class => "form-horizontal practicum" } do |f| %>
 
-  <% if @practicum.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@practicum.errors.count, "error") %> prohibited this practicum from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @practicum.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
+<% if @practicum.errors.any? %>
+<div id="error_expl" class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@practicum.errors.count, "error") %>
+            prohibited this practicum from being saved:</h3>
     </div>
-  <% end %>
+    <div class="panel-body">
+        <ul>
+            <% @practicum.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+<% end %>
 
-  <div class="form-group">
-    <%= f.label :id_practicum, :class => 'control-label col-lg-2' %>
+<% if @practicum.id_practicum %>
+<div class="form-group">
+    <%= f.label :id_praktikum, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :id_practicum, :class => 'form-control' %>
+        <%= f.text_field :id_practicum, :class => 'form-control', :disabled => true %>
     </div>
     <%=f.error_span(:id_practicum) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :practicum_name, :class => 'control-label col-lg-2' %>
+</div>
+<% end %>
+
+<div class="form-group">
+    <%= f.label :nama_praktikum, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :practicum_name, :class => 'form-control' %>
+        <%= f.text_field :practicum_name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:practicum_name) %>
-  </div>
+</div>
 
-  <div class="form-group">
+<div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        <% if @practicum.id_practicum %>
+        <%= f.submit :Simpan, :class => 'btn btn-success' %>
+    <% else %>
+        <%= f.submit :Simpan, :class => 'btn btn-primary' %>
+        <% end %>
+
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 practicums_path, :class => 'btn btn-default' %>
     </div>
-  </div>
+</div>
 
 <% end %>
