@@ -6,6 +6,10 @@ class CreateStudents < ActiveRecord::Migration
       t.string :class, limit: 6
       t.string :gender, limit: 6
       t.text :address
+      t.string :password_hash, limit: 150
+      t.string :password_salt, limit: 150
+      t.boolean :enable
+      t.string :role, limit: 20
 
       t.timestamps null: false
     end
