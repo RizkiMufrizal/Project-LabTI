@@ -3,7 +3,7 @@ class CreateStudents < ActiveRecord::Migration
     create_table :students, id: false do |t|
       t.primary_key :npm, :string, limit: 8
       t.string :name, limit: 50
-      t.string :class, limit: 6
+      t.string :class_name, limit: 6
       t.string :gender, limit: 6
       t.text :address
       t.string :password_hash, limit: 150
