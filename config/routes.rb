@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/login' => 'session#login'
+  get '/admin/login' => 'session#admin'
   resources 'practicums'
   resources 'students'
 
