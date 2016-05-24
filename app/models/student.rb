@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
   before_create :set_role_enable
-  validates :npm, :name, :class, :gender, :address, presence: true
+  validates :npm, :name, :class_name, :gender, :address, presence: true
 
   private
 
