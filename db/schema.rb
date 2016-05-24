@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160509065851) do
 
   create_table "students", primary_key: "npm", force: :cascade do |t|
     t.string   "name",          limit: 50
-    t.string   "class",         limit: 6
+    t.string   "class_name",    limit: 6
     t.string   "gender",        limit: 6
     t.text     "address"
     t.string   "password_hash", limit: 150
