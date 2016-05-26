@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509065851) do
+ActiveRecord::Schema.define(version: 20160526120319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,20 @@ ActiveRecord::Schema.define(version: 20160509065851) do
   end
 
   create_table "projects", primary_key: "id_project", force: :cascade do |t|
-    t.string   "name_project",           limit: 50
-    t.string   "responsible_person",     limit: 50
-    t.string   "name_file",              limit: 150
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "student_npm",            limit: 8
-    t.string   "practicum_id_practicum", limit: 150
+    t.string   "name_project",              limit: 50
+    t.string   "name_file",                 limit: 150
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "student_npm",               limit: 8
+    t.string   "practicum_id_practicum",    limit: 150
+    t.string   "responsibles_id_assistant", limit: 150
+  end
+
+  create_table "responsibles", primary_key: "id_assistant", force: :cascade do |t|
+    t.string   "name",       limit: 50
+    t.string   "phone",      limit: 20
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "students", primary_key: "npm", force: :cascade do |t|
@@ -46,6 +53,8 @@ ActiveRecord::Schema.define(version: 20160509065851) do
   end
 
   create_table "users", primary_key: "email", force: :cascade do |t|
+    t.string   "name",          limit: 50
+    t.string   "string",        limit: 50
     t.string   "password_hash", limit: 150
     t.string   "password_salt", limit: 150
     t.boolean  "enable"
@@ -55,5 +64,6 @@ ActiveRecord::Schema.define(version: 20160509065851) do
   end
 
   add_foreign_key "projects", "practicums", column: "practicum_id_practicum", primary_key: "id_practicum", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "projects", "responsibles", column: "responsibles_id_assistant", primary_key: "id_assistant", on_update: :cascade, on_delete: :cascade
   add_foreign_key "projects", "students", column: "student_npm", primary_key: "npm", on_update: :cascade, on_delete: :cascade
 end
