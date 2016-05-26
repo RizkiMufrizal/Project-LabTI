@@ -1,42 +1,89 @@
 class PracticumsController < ApplicationController
   def index
-    @practicums = Practicum.all
+    if session[:user_role]
+      if session[:user_role] == 'ROLE_ADMIN'
+        @practicums = Practicum.paginate(page: params[:page], per_page: 5)
+      else
+        redirect_to '/403'
+      end
+    else
+      redirect_to '/login'
+    end
   end
 
   def new
-    @practicum = Practicum.new
+    if session[:user_role]
+      if session[:user_role] == 'ROLE_ADMIN'
+        @practicum = Practicum.new
+      else
+        redirect_to '/403'
+      end
+    else
+      redirect_to '/login'
+    end
   end
 
   def create
-    @practicum = Practicum.new(practicum_params)
-    @practicum.id_practicum = SecureRandom.uuid
-    if @practicum.valid?
-      @practicum.save
-      flash[:notice] = 'data praktikum berhasil disimpan'
-      redirect_to practicums_path
+    if session[:user_role]
+      if session[:user_role] == 'ROLE_ADMIN'
+        @practicum = Practicum.new(practicum_params)
+        @practicum.id_practicum = SecureRandom.uuid
+        if @practicum.valid?
+          @practicum.save
+          flash[:notice] = 'data praktikum berhasil disimpan'
+          redirect_to practicums_path
+        else
+          render 'new'
+        end
+      else
+        redirect_to '/403'
+      end
     else
-      render 'new'
+      redirect_to '/login'
     end
   end
 
   def edit
-    @practicum = Practicum.find(params[:id])
+    if session[:user_role]
+      if session[:user_role] == 'ROLE_ADMIN'
+        @practicum = Practicum.find(params[:id])
+      else
+        redirect_to '/403'
+      end
+    else
+      redirect_to '/login'
+    end
   end
 
   def update
-    @practicum = Practicum.find(params[:id])
-
-    if @practicum.update(practicum_params)
-      redirect_to practicums_path
+    if session[:user_role]
+      if session[:user_role] == 'ROLE_ADMIN'
+        @practicum = Practicum.find(params[:id])
+        if @practicum.update(practicum_params)
+          redirect_to practicums_path
+        else
+          render 'edit'
+        end
+      else
+        redirect_to '/403'
+      end
     else
-      render 'edit'
+      redirect_to '/login'
     end
   end
 
   def destroy
-    @practicum = Practicum.find(params[:id])
-    @practicum.destroy
-    redirect_to practicums_path
+    if session[:user_role]
+      if session[:user_role] == 'ROLE_ADMIN'
+        @practicum = Practicum.find(params[:id])
+        @practicum.destroy
+        redirect_to practicums_path
+      else
+        redirect_to '/403'
+      end
+    else
+      redirect_to '/login'
+    end
   end
 
   private
