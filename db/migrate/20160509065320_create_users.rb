@@ -2,6 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users, id: false do |t|
       t.primary_key :email, :string, limit: 50
+      t.string :name, :string, limit: 50
       t.string :password_hash, limit: 150
       t.string :password_salt, limit: 150
       t.boolean :enable
