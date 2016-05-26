@@ -7,7 +7,6 @@ class SessionController < ApplicationController
     if @user
       session[:user_name] = @user.name
       session[:user_email] = @user.email
-      session[:user_login] = true
       session[:user_role] = @user.role
       redirect_to '/'
     else
@@ -24,7 +23,6 @@ class SessionController < ApplicationController
     if @student
       session[:user_name] = @student.name
       session[:user_npm] = @student.npm
-      session[:user_login] = true
       session[:user_role] = @student.role
       redirect_to '/'
     else
@@ -38,6 +36,9 @@ class SessionController < ApplicationController
     session[:user_name] = nil
     session[:user_email] = nil
     session[:user_login] = false
-    redirect_to action: 'login'
+    redirect_to '/'
+  end
+
+  def page403
   end
 end
