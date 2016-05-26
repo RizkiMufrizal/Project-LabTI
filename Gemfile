@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# twitter pagination
+gem 'will_paginate-bootstrap'
+
 # twitter bootstrap
 gem 'twitter-bootstrap-rails'
 
@@ -26,7 +29,7 @@ gem 'jbuilder', '~> 2.4.1'
 gem 'sdoc', '~> 0.4.1', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.11'
 
 # Use Unicorn as the app server
 gem 'unicorn-rails', '~> 2.2'
