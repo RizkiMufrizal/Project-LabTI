@@ -3,9 +3,11 @@
     <h1>Data Project</h1>
 </div>
 
+<% if session[:user_role] == 'ROLE_ADMIN' %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_project_path,
             :class => 'btn btn-primary' %>
+<% end %>
 
 <table class="table table-striped">
     <thead>
@@ -16,7 +18,9 @@
             <th><%= model_class.human_attribute_name(:nama_file) %></th>
             <th><%= model_class.human_attribute_name(:npm) %></th>
             <th><%= model_class.human_attribute_name(:id_praktikum) %></th>
+            <% if session[:user_role] == 'ROLE_ADMIN' %>
             <th><%=t '.actions', :default => t("helpers.Aksi") %></th>
+            <% end %>
         </tr>
     </thead>
     <tbody>
@@ -28,12 +32,14 @@
             <td><%= project.name_file %></td>
             <td><%= project.student_npm %></td>
             <td><%= project.practicum_id_practicum %></td>
+            <% if session[:user_role] == 'ROLE_ADMIN' %>
             <td>
                 <%= link_to t('.edit', :default => t("helpers.links.Edit")),
                       edit_project_path(project), :class => 'btn btn-success' %>
                 <%= link_to t('.destroy', :default => t("helpers.links.Hapus")), project_path(project), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Anda ingin menghapus data ?')) }, :class => 'btn
                 btn-danger' %>
             </td>
+            <% end %>
         </tr>
         <% end %>
     </tbody>
