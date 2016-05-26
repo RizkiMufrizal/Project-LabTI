@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   before_create :ecrypt_password
-  validates :email, :password_hash, presence: true
+  validates :email, :name, :password_hash, presence: true
 
   def self.authenticate(email, password)
     user = User.where(email: email).first
