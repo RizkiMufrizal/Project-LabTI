@@ -3,7 +3,7 @@
     <h1>Data Project Pribadi</h1>
 </div>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to t('.new', :default => t("helpers.links.Tambah")),
             new_project_path,
             :class => 'btn btn-primary' %>
 
@@ -24,7 +24,7 @@
         <tr>
             <td><%= project.id_project %></td>
             <td><%= project.name_project %></td>
-            <td><%= project.responsible_person %></td>
+            <td><%= project.responsibles_id_assistant %></td>
             <td><%= project.name_file %></td>
             <td><%= project.student_npm %></td>
             <td><%= project.practicum_id_practicum %></td>
