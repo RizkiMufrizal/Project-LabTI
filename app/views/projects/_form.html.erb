@@ -1,69 +1,64 @@
 <%= form_for @project, :html => { :class => "form-horizontal project" } do |f| %>
 
-  <% if @project.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @project.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
+<% if @project.errors.any? %>
+<div id="error_expl" class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@project.errors.count, "error") %>
+            prohibited this project from being saved:</h3>
     </div>
-  <% end %>
+    <div class="panel-body">
+        <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+<% end %>
 
-  <div class="form-group">
+<div class="form-group">
     <%= f.label :id_project, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :id_project, :class => 'form-control' %>
+        <%= f.text_field :id_project, :class => 'form-control' %>
     </div>
     <%=f.error_span(:id_project) %>
-  </div>
-  <div class="form-group">
+</div>
+<div class="form-group">
     <%= f.label :name_project, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :name_project, :class => 'form-control' %>
+        <%= f.text_field :name_project, :class => 'form-control' %>
     </div>
     <%=f.error_span(:name_project) %>
-  </div>
-  <div class="form-group">
+</div>
+<div class="form-group">
     <%= f.label :responsible_person, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :responsible_person, :class => 'form-control' %>
+        <%= f.text_field :responsible_person, :class => 'form-control' %>
     </div>
     <%=f.error_span(:responsible_person) %>
-  </div>
-  <div class="form-group">
+</div>
+<div class="form-group">
     <%= f.label :name_file, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :name_file, :class => 'form-control' %>
+        <%= f.file_field :name_file, :class => 'form-control' %>
     </div>
     <%=f.error_span(:name_file) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :student_npm, :class => 'control-label col-lg-2' %>
+</div>
+
+<div class="form-group">
+    <%= f.label :practicum, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :student_npm, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:student_npm) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :practicum_id_practicum, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :practicum_id_practicum, :class => 'form-control' %>
+        <%= f.collection_select :practicum_id_practicum, Practicum.all, :id, :practicum_name, {prompt: "Pilih Practicum"}, {class: "form-control"} %>
     </div>
     <%=f.error_span(:practicum_id_practicum) %>
-  </div>
+</div>
 
-  <div class="form-group">
+<div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 projects_path, :class => 'btn btn-default' %>
     </div>
-  </div>
+</div>
 
 <% end %>
