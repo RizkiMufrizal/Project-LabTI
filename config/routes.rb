@@ -2,9 +2,14 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/login' => 'session#login'
+  post '/login' => 'session#process_login_praktikan'
   get '/admin/login' => 'session#admin'
+  post '/admin/login' => 'session#process_login_admin'
+  get '/403' => 'session#page403'
+
   resources 'practicums'
   resources 'students'
+  resources 'projects'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
