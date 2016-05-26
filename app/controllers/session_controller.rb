@@ -35,7 +35,8 @@ class SessionController < ApplicationController
     flash[:notice] = 'Anda berhasil logout'
     session[:user_name] = nil
     session[:user_email] = nil
-    session[:user_login] = false
+    session[:user_npm] = nil
+    session[:user_role] = nil
     redirect_to '/'
   end
 
