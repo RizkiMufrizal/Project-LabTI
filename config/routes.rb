@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/login' => 'session#login'
   post '/login' => 'session#process_login_praktikan'
+  get '/logout' => 'session#logout'
   get '/admin/login' => 'session#admin'
   post '/admin/login' => 'session#process_login_admin'
   get '/403' => 'session#page403'
