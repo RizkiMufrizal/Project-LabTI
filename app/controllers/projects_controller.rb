@@ -97,6 +97,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name_project, :responsible_person, :name_file, :practicum_id_practicum)
+    params.require(:project).permit(:name_project, :name_file, :practicum_id_practicum, :responsibles_id_assistant)
   end
 end
