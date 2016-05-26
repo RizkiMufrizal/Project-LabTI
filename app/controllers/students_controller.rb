@@ -55,8 +55,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  end
-
   def update
     if session[:user_role]
       if session[:user_role] == 'ROLE_ADMIN'
