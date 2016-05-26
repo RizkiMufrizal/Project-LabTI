@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><%= content_for?(:title) ? yield(:title) : "ProjectLabti" %></title>
+        <title><%= content_for?(:title) ? yield(:title) : "Project Labti" %></title>
         <%= csrf_meta_tags %>
 
         <%= stylesheet_link_tag "application", :media => "all" %>
@@ -43,15 +43,39 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">ProjectLabti</a>
+                <a class="navbar-brand" href="#">Project Labti</a>
                 <div class="navbar-collapse collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
+                        <% if session[:user_role] == 'ROLE_ADMIN' %>
                         <li><%= link_to "Data Praktikum", practicums_path  %></li>
                         <li><%= link_to "Data Mahasiswa", students_path  %></li>
-                        <li><%= link_to "Register", new_student_path  %></li>
-                        <li><%= link_to "Data Project", projects_path %></li>
+                        <li><%= link_to "Data User", users_path %></li>
+                        <% end %>
+                        <% if session[:user_role] == 'ROLE_MAHASISWA' %>
                         <li><%= link_to "Data Project Pribadi", '/MyProject' %></li>
+                        <% end %>
+                        <% if !session[:user_role] %>
+                        <li><%= link_to "Register", new_student_path %></li>
+                        <li><%= link_to "Login", '/login'  %></li>
+                        <% end %>
+                        <li><%= link_to "Data Project", projects_path %></li>
                     </ul>
+                    <% if session[:user_role] %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Selamat Datang
+                                <%= session[:user_name] %>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/logout">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <% end %>
                 </div>
             </div>
         </div>
