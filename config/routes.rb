@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/admin/login' => 'session#admin'
   post '/admin/login' => 'session#process_login_admin'
   get '/403' => 'session#page403'
+  get '/MyProject' => 'projects#indexStudent'
 
   resources 'practicums'
   resources 'students'
