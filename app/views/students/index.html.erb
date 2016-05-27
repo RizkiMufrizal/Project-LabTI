@@ -5,15 +5,15 @@
 <%= link_to t('.new', :default => t("helpers.links.Tambah")),
             new_student_path,
             :class => 'btn btn-primary' %>
-<table class="table table-striped">
+<table class="table table-striped table-bordered table-responsive table-hover">
     <thead>
         <tr>
-            <th><%= model_class.human_attribute_name(:npm) %></th>
-            <th><%= model_class.human_attribute_name(:nama) %></th>
-            <th><%= model_class.human_attribute_name(:kelas) %></th>
-            <th><%= model_class.human_attribute_name(:jenis_kelamin) %></th>
-            <th><%= model_class.human_attribute_name(:alamat) %></th>
-            <th><%=t '.actions', :default => t("helpers.Aksi") %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:npm) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:nama) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:kelas) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:jenis_kelamin) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:alamat) %></th>
+            <th class="text-center"><%=t '.actions', :default => t("helpers.Aksi") %></th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
             <td><%= student.class_name %></td>
             <td><%= student.gender %></td>
             <td><%= student.address %></td>
-            <td>
+            <td class="text-center">
                 <%= link_to t('.edit', :default => t("helpers.links.Edit")),
                       edit_student_path(student), :class => 'btn btn-success' %>
                 <%= link_to t('.destroy', :default => t("helpers.links.Hapus")), student_path(student), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Apakah anda ingin menghapus data ?')) }, :class =>
