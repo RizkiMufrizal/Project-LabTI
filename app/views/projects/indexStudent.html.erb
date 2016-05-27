@@ -7,16 +7,15 @@
             new_project_path,
             :class => 'btn btn-primary' %>
 
-<table class="table table-striped">
+<table class="table table-striped table-bordered table-responsive table-hover">
     <thead>
         <tr>
-            <th><%= model_class.human_attribute_name(:id_project) %></th>
-            <th><%= model_class.human_attribute_name(:nama_project) %></th>
-            <th><%= model_class.human_attribute_name(:penanggung_jawab) %></th>
-            <th><%= model_class.human_attribute_name(:nama_file) %></th>
-            <th><%= model_class.human_attribute_name(:npm) %></th>
-            <th><%= model_class.human_attribute_name(:id_praktikum) %></th>
-            <th><%=t '.actions', :default => t("helpers.Aksi") %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:id_project) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:nama_project) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:nama_file) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:penanggung_jawab) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:Praktikum) %></th>
+            <th class="text-center"><%=t '.actions', :default => t("helpers.Aksi") %></th>
         </tr>
     </thead>
     <tbody>
@@ -24,11 +23,10 @@
         <tr>
             <td><%= project.id_project %></td>
             <td><%= project.name_project %></td>
-            <td><%= project.responsibles_id_assistant %></td>
             <td><%= project.name_file %></td>
-            <td><%= project.student_npm %></td>
-            <td><%= project.practicum_id_practicum %></td>
-            <td>
+            <td><%= project.name %></td>
+            <td><%= project.practicum_name %></td>
+            <td class="text-center">
                 <%= link_to t('.edit', :default => t("helpers.links.Edit")),
                       edit_project_path(project), :class => 'btn btn-success' %>
                 <%= link_to t('.destroy', :default => t("helpers.links.Hapus")), project_path(project), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Anda ingin menghapus data ?')) }, :class => 'btn
