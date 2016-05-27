@@ -7,20 +7,20 @@
             new_practicum_path,
             :class => 'btn btn-primary' %>
 
-<table class="table table-striped">
+<table class="table table-striped table-bordered table-responsive table-hover">
     <thead>
         <tr>
-            <th><%= model_class.human_attribute_name(:id_praktikum) %></th>
-            <th><%= model_class.human_attribute_name(:nama_praktikum) %></th>
-            <th><%=t '.actions', :default => t("helpers.Aksi") %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:id_praktikum) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:nama_praktikum) %></th>
+            <th class="text-center"><%=t '.actions', :default => t("helpers.Aksi") %></th>
         </tr>
     </thead>
     <tbody>
         <% @practicums.each do |practicum| %>
         <tr>
-            <td><%= practicum.id_practicum %></td>
-            <td><%= practicum.practicum_name %></td>
-            <td>
+            <td class="text-center"><%= practicum.id_practicum %></td>
+            <td class="text-center"><%= practicum.practicum_name %></td>
+            <td class="text-center">
                 <%= link_to t('.edit', :default => t("helpers.links.Edit")),
                       edit_practicum_path(practicum), :class => 'btn btn-success' %>
                 <%= link_to t('.destroy', :default => t("helpers.links.Hapus")), practicum_path(practicum), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Anda ingin menghapus data ?')) }, :class => 'btn
