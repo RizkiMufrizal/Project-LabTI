@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.select('practicums.*, projects.*, students.*, responsibles.*')
+    @projects = Project.select('practicums.*, projects.*, students.*, students.name as student_name, responsibles.*')
                        .joins('INNER JOIN practicums
                                ON practicums.id_practicum = projects.practicum_id_practicum
                                INNER JOIN students
