@@ -5,13 +5,13 @@
 <%= link_to t('.new', :default => t("helpers.links.Tambah")),
             new_responsible_path,
             :class => 'btn btn-primary' %>
-<table class="table table-striped">
+<table class="table table-striped table-bordered table-responsive table-hover">
     <thead>
         <tr>
-            <th><%= model_class.human_attribute_name(:id_asisten) %></th>
-            <th><%= model_class.human_attribute_name(:nama) %></th>
-            <th><%= model_class.human_attribute_name(:no_telpon) %></th>
-            <th><%=t '.actions', :default => t("helpers.Aksi") %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:id_asisten) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:nama) %></th>
+            <th class="text-center"><%= model_class.human_attribute_name(:no_telpon) %></th>
+            <th class="text-center"><%=t '.actions', :default => t("helpers.Aksi") %></th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
             <td><%= responsible.id_assistant %></td>
             <td><%= responsible.name %></td>
             <td><%= responsible.phone %></td>
-            <td>
+            <td class="text-center">
                 <%= link_to t('.edit', :default => t("helpers.links.Edit")),
                       edit_responsible_path(responsible), :class => 'btn btn-success' %>
                 <%= link_to t('.destroy', :default => t("helpers.links.Hapus")), responsible_path(responsible), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Anda ingin menghapus data ?')) }, :class =>
