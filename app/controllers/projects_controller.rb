@@ -1,12 +1,27 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.paginate(page: params[:page], per_page: 5)
+    @projects = Project.select('practicums.*, projects.*, students.*, responsibles.*')
+                       .joins('INNER JOIN practicums
+                               ON practicums.id_practicum = projects.practicum_id_practicum
+                               INNER JOIN students
+                               ON students.npm = projects.student_npm
+                               INNER JOIN responsibles
+                               ON responsibles.id_assistant = projects.responsibles_id_assistant')
+                       .paginate(page: params[:page], per_page: 5)
   end
 
   def indexStudent
     if session[:user_role]
       if session[:user_role] == 'ROLE_MAHASISWA'
-        @projects = Project.where(student_npm: session[:user_npm]).paginate(page: params[:page], per_page: 5)
+        @projects = Project.select('practicums.*, projects.*, students.*, responsibles.*')
+                           .joins('INNER JOIN practicums
+                                   ON practicums.id_practicum = projects.practicum_id_practicum
+                                   INNER JOIN students
+                                   ON students.npm = projects.student_npm
+                                   INNER JOIN responsibles
+                                   ON responsibles.id_assistant = projects.responsibles_id_assistant')
+                           .where(student_npm: session[:user_npm])
+                           .paginate(page: params[:page], per_page: 5)
       else
         redirect_to '/403'
       end
